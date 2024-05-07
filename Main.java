@@ -19,7 +19,6 @@ public class Main {
 
             String surname = inputData[0];
 
-            // Проверка формата даты рождения
             try {
                 LocalDate.parse(inputData[3], DateTimeFormatter.ofPattern("dd.MM.yyyy"));
             } catch (Exception e) {
@@ -27,7 +26,6 @@ public class Main {
                 return;
             }
 
-            // Проверка формата номера телефона
             try {
                 Long.parseLong(inputData[4]);
             } catch (NumberFormatException e) {
@@ -35,17 +33,14 @@ public class Main {
                 return;
             }
 
-            // Проверка формата пола
             String gender = inputData[5];
             if (!gender.equals("m") && !gender.equals("f")) {
                 System.err.println("Неверный формат пола. Правильный формат: m или f");
                 return;
             }
 
-            // Создание строки для записи в файл
             String record = surname + " " + inputData[1] + " " + inputData[2] + " " + inputData[3] + " " + inputData[4] + " " + inputData[5];
 
-            // Запись данных в файл
             try (FileWriter fw = new FileWriter(surname + ".txt", true)) {
                 fw.write(record);
                 fw.write("\n");
